@@ -1,0 +1,150 @@
+body {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+}
+
+#ciudad {
+    outline: none;
+    border: transparent solid 1px;
+    transition: border-color .1s ease;
+}
+
+#ciudad:focus {
+    border-color: black;
+}
+
+input[type="submit"] {
+    transition: filter .2s ease;
+}
+
+input[type="submit"]:hover {
+    filter: brightness(95%);
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.data {
+    font-weight: bold;
+}
+
+.resultado {
+    margin: 24px 0;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .5s ease;
+}
+
+.ciudad {
+    font-size: 20px;
+    text-align: center;
+    margin: 0 0 16px;
+    text-transform: capitalize;
+}
+
+.icon {
+    max-width: 100px;
+    margin: 0 auto 16px;
+    animation: icon 5s infinite linear;
+}
+
+@keyframes icon {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loader--box {
+    margin: 24px auto 0;
+    display: grid;
+    place-items: center;
+    gap: 4px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height .2s ease;
+}
+
+.loader {
+    --size: 45px;
+    width: var(--size);
+    height: var(--size);
+    border: 2px solid #000;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    background: #000;
+    width: 2px;
+    height: calc(var(--size) / 2);
+    transform: translateX(-50%);
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.no-encontrada {
+    padding: 8px 24px;
+    user-select: none;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
+    border-radius: 5px;
+    background-color: red;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    transition: transform .5s ease;
+}
+
+.no-encontrada--active{
+    transform: translateX(-50%) translateY(50%);
+
+}
+
+@media screen and (max-width: 672px){
+    .container{
+        padding: 0 clamp(24px, 5vw, 40px);
+    }
+
+    .list{
+        flex-direction: column;
+        gap: 16px;
+    }
+}
